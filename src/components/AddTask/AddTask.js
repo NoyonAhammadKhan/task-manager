@@ -49,7 +49,7 @@ const AddTask = () => {
 
     return (
         <div>
-            <h1 className='text-center'>Add Task</h1>
+            <h2 className="mb-4 text-center text-2xl font-semibold leading-tight">ADD TASK</h2>
             <form onSubmit={handleSubmit(handleAddTask)} className='w-2/4 mx-auto'>
             <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-gray-900">
 			
