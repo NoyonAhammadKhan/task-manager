@@ -1,23 +1,45 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const Signup = () => {
+	const { register, handleSubmit, formState: { errors } } = useForm();
+	const {createUser}=useContext(AuthContext);
+
+	const handleSignUp = data => {
+        console.log(data);
+        
+        createUser(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                toast.success('Account Created Successfully')
+            })
+            .catch(error => {
+                console.log(error.message)
+                
+            });
+    }
     return (
         <div className="w-full mx-auto bg-gray-200 max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-900 dark:text-gray-100">
 	<h1 className="text-2xl font-bold text-center">Sign Up</h1>
-	<form novalidate="" action="" className="space-y-6 ng-untouched ng-pristine ng-valid">
+	<form onSubmit={handleSubmit(handleSignUp)}  className="space-y-6 ng-untouched ng-pristine ng-valid">
 		<div className="space-y-1 text-sm">
-			<label for="username" className="block dark:text-gray-400">Username</label>
-			<input type="text" name="username" id="username" placeholder="Username" className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
+			<label htmlFor="username" className="block dark:text-gray-400">Username</label>
+			<input {...register("email", {
+                        required: "email is Required"
+                    })} type="email"  id="username" placeholder="Email" className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
 		</div>
 		<div className="space-y-1 text-sm">
-			<label for="password" className="block dark:text-gray-400">Password</label>
-			<input type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
-			<div className="flex justify-end text-xs dark:text-gray-400">
-				<a rel="noopener noreferrer" href="#">Forgot Password?</a>
-			</div>
+			<label htmlFor="password" className="block dark:text-gray-400">Password</label>
+			<input {...register("password", {
+                        required: "password is Required"
+                    })} type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
+			
 		</div>
-		<button className="block w-full p-3 text-center rounded-sm dark:text-gray-900 dark:bg-violet-400">Sign Up</button>
+		<button className="block border border-fuchsia-700 w-full p-3 text-center rounded-sm dark:text-gray-900 dark:bg-violet-400">Sign Up</button>
 	</form>
 	{/* <div className="flex items-center pt-4 space-x-1">
 		<div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>

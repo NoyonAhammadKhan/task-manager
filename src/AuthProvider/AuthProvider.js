@@ -22,6 +22,10 @@ const AuthProvider = ({children}) => {
         setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     }
+    const providerLogin =(provider)=>{
+        setLoading(true)
+        return signInWithPopup(auth,provider)
+    }
 
     const updateUser = (userInfo) =>{
         return updateProfile(auth.currentUser, userInfo);
@@ -48,7 +52,8 @@ const AuthProvider = ({children}) => {
         updateUser,
         logOut,
         user,
-        loading
+        loading,
+        providerLogin
     }
     return (
         <AuthContext.Provider value={authInfo}>

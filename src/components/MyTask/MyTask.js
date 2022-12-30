@@ -1,6 +1,15 @@
 import React from 'react';
 
 const MyTask = () => {
+	const handleCompleteStatus=(id)=>{
+		fetch(`https://tasks-nine.vercel.app//tasks/completed/${id}`,{
+			method:'PATCH',
+			headers:{
+				'content-type':'application/json'
+			},
+			body:JSON.stringify({completeStatus:'completed'})
+		})
+	}
     return (
         <div>
             <h1>My Task</h1>
@@ -47,10 +56,10 @@ const MyTask = () => {
                     <button type="button" className="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5">Completed</button>
 					</td>
 					<td className="p-3">
-                    <button type="button" class="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Update Task</button>
+                    <button type="button" className="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Update</button>
 					</td>
                     <td className="p-3">
-                    <button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Delete Task</button>
+                    <button type="button" className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Delete</button>
 					</td>
 				</tr>
 				

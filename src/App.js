@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { RouterProvider } from 'react-router-dom';
 import routes from './Routes/Routes';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   const [theme, setTheme]=useState("light");
@@ -29,6 +30,7 @@ function App() {
       // </div>
       <div>
         <RouterProvider router={routes}></RouterProvider>
+        <Toaster/>
       </div>
   
   );

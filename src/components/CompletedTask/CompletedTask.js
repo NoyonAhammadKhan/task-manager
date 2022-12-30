@@ -1,6 +1,15 @@
 import React from 'react';
 
 const CompletedTask = () => {
+	const handleCompleteStatus=(id)=>{
+		fetch(`https://tasks-nine.vercel.app//tasks/completed/${id}`,{
+			method:'PATCH',
+			headers:{
+				'content-type':'application/json'
+			},
+			body:JSON.stringify({completeStatus:'notcompleted'})
+		})
+	}
     return (
         <div>
             <h1>Completed Task</h1>
@@ -48,7 +57,7 @@ const CompletedTask = () => {
 					</td>
 					
                     <td className="p-3">
-                    <button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Delete Task</button>
+                    <button type="button" className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Delete Task</button>
 					</td>
 				</tr>
 				
