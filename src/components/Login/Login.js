@@ -3,12 +3,13 @@ import React from 'react';
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const Login = () => {
 	const { register, handleSubmit, formState: { errors } } = useForm();
 	const {signIn,providerLogin}=useContext(AuthContext);
+	const navigate = useNavigate();
 	const handleLogin = data => {
         console.log(data);
         
@@ -16,7 +17,8 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-        
+				navigate('/')
+				toast.success('Log in successful')
             })
             .catch(error => {
                 console.log(error.message)
@@ -30,6 +32,7 @@ const Login = () => {
         providerLogin(provider)
         .then(result=>{
             const user = result.user;
+			navigate('/')
 			toast.success('Login Successful')
         })
         .catch(e=>console.log(e))

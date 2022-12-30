@@ -5,6 +5,7 @@ import MyTask from '../components/MyTask/MyTask';
 import Login from '../components/Login/Login'
 import Main from '../layouts/Main/Main';
 import Signup from '../components/Signup/Signup';
+import EditTask from '../components/EditTask/EditTask';
 const { createBrowserRouter } = require("react-router-dom");
 const routes =createBrowserRouter([
     {
@@ -30,6 +31,11 @@ const routes =createBrowserRouter([
             {
                 path:'/signup',
                 element:<Signup></Signup>
+            },
+            {
+                path:'/edittask/:id',
+                element:<EditTask></EditTask>,
+                loader:({params})=>fetch(`https://tasks-noyonahammadkhan.vercel.app/tasks/${params.id}`)
             }
         ]
     }
